@@ -1,0 +1,48 @@
+<div id="data">
+Здесь будет data
+</div>
+
+<script>
+// Формируем JSON с SQL-командой
+const body = {
+  "transaction": [
+  {
+    "query": "SELECT * FROM TEST_TABLE ORDER BY ID ASC"
+  },
+ ]
+};
+
+// Делаем запрос
+var xhr = new XMLHttpRequest();
+var url = "http://176.124.209.11:12321/testDb";
+xhr.open("POST", url, true);
+xhr.setRequestHeader("Content-Type", "application/json");
+// Указываем функцию, которая будет вызвана, когда будет получен ответ
+xhr.onreadystatechange = printResponse;
+
+xhr.send(JSON.stringify(body));
+
+// Эта функция автоматически вызовется, когда получим ответ
+function printResponse() {
+  var d = document.getElementById("data")
+  if (xhr.readyState === 4 && xhr.status === 200) {
+    var json = JSON.parse(xhr.responseText);
+    var s = "<TABLE>"
+    // и вот здесь формировать HTML ответа
+    //..
+	for (row in json["results"][0]["resultSet"]) {
+	    s += "<TR>"
+		s += "<TD>" + json["results"][0]["resultSet"][row]["VAL"] + "</TD>"
+		s += "<TD>" + json["results"][0]["resultSet"][row]["ID"] + "</TD>" + "</TD>"
+		s += "<\TR>"
+	}
+	
+	s += "</TABLE>"
+    alert(s)
+	d.innerHTML = s
+  }
+  else {
+    d.innerHTML = "<H1>ERROR!!!</H1>"
+  }
+}
+</script>
