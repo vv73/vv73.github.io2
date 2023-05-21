@@ -1,5 +1,5 @@
 <div id="data">
-Здесь будут данные с сервера
+<img src=https://otkritkis.com/wp-content/uploads/2022/07/gufdi.gif>
 </div>
 
 <script>
@@ -12,36 +12,42 @@ const body = {
  ]
 };
 
-// Делаем запрос
-var xhr = new XMLHttpRequest();
-var url = "https://oivt.fvds.ru/testDb";
-xhr.open("POST", url, true);
-xhr.setRequestHeader("Content-Type", "application/json");
-	
-// Указываем функцию, которая будет вызвана, когда будет получен ответ
-xhr.onreadystatechange = printResponse;
+// Задерживаем для красоты
 
-xhr.send(JSON.stringify(body));
+function req() {	
+	// Делаем запрос
+	var xhr = new XMLHttpRequest();
+	var url = "https://oivt.fvds.ru/testDb";
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-Type", "application/json");
+
+	// Указываем функцию, которая будет вызвана, когда будет получен ответ
+	xhr.onreadystatechange = printResponse;
+
+	xhr.send(JSON.stringify(body));
+}
 
 // Эта функция автоматически вызовется, когда получим ответ
 function printResponse() {
   var d = document.getElementById("data")
   if (xhr.readyState === 4 && xhr.status === 200) {
     var json = JSON.parse(xhr.responseText);
-	  
+
    // Формируем HTML ответа	  
-   
+
 	var s = "<TABLE>"
-    
+
 	for (row in json["results"][0]["resultSet"]) {
 	    s += "<TR>"
 		s += "<TD>" + json["results"][0]["resultSet"][row]["VAL"] + "</TD>"
 		s += "<TD>" + json["results"][0]["resultSet"][row]["ID"] + "</TD>" + "</TD>"
 		s += "<\TR>"
 	}
-	
+
 	s += "</TABLE>"
 	d.innerHTML = s
-  }
-}
+ }
+
+ setTimeout(rec, 2000);
+	
 </script>
