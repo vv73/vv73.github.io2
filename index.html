@@ -33,7 +33,7 @@ function printResponse() {
   if (xhr.readyState === 4 && xhr.status === 200) {
     var json = JSON.parse(xhr.responseText);
 
-   // Формируем HTML ответа	  
+        // Формируем HTML ответа	  
 
 	var s = "<TABLE>"
 
@@ -46,7 +46,8 @@ function printResponse() {
 
 	s += "</TABLE>"
 	d.innerHTML = s
- }
+  }
+}
 
  setTimeout(rec, 2000);
 	
