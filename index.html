@@ -1,5 +1,5 @@
 <div id="data">
-Здесь будет data
+Здесь будут данные с сервера
 </div>
 
 <script>
@@ -17,6 +17,7 @@ var xhr = new XMLHttpRequest();
 var url = "https://oivt.fvds.ru/testDb";
 xhr.open("POST", url, true);
 xhr.setRequestHeader("Content-Type", "application/json");
+	
 // Указываем функцию, которая будет вызвана, когда будет получен ответ
 xhr.onreadystatechange = printResponse;
 
