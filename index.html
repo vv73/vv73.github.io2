@@ -12,10 +12,10 @@ const body = {
  ]
 };
 
-
+var xhr = new XMLHttpRequest();
+	
 function req() {	
 	// Делаем запрос
-	var xhr = new XMLHttpRequest();
 	var url = "https://oivt.fvds.ru/testDb";
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-Type", "application/json");
