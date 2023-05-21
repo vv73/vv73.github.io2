@@ -27,9 +27,11 @@ function printResponse() {
   var d = document.getElementById("data")
   if (xhr.readyState === 4 && xhr.status === 200) {
     var json = JSON.parse(xhr.responseText);
-    var s = "<TABLE>"
-    // и вот здесь формировать HTML ответа
-    //..
+	  
+   // Формируем HTML ответа	  
+   
+	var s = "<TABLE>"
+    
 	for (row in json["results"][0]["resultSet"]) {
 	    s += "<TR>"
 		s += "<TD>" + json["results"][0]["resultSet"][row]["VAL"] + "</TD>"
@@ -38,11 +40,7 @@ function printResponse() {
 	}
 	
 	s += "</TABLE>"
-    alert(s)
 	d.innerHTML = s
-  }
-  else {
-    d.innerHTML = "<H1>ERROR!!!</H1>"
   }
 }
 </script>
